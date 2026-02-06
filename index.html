@@ -65,6 +65,7 @@
             display: flex;
             gap: 2rem;
             list-style: none;
+            align-items: center;
         }
 
         nav .nav-links a {
@@ -77,6 +78,24 @@
 
         nav .nav-links a:hover {
             color: var(--accent);
+        }
+
+        .lang-toggle {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.3rem 0.7rem;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .lang-toggle:hover {
+            background: var(--primary-light);
         }
 
         .hamburger {
@@ -794,11 +813,12 @@
                 <span></span><span></span><span></span>
             </div>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#sobre-mi">Sobre Mí</a></li>
-                <li><a href="#experiencia">Experiencia</a></li>
-                <li><a href="#educacion">Educación</a></li>
-                <li><a href="#habilidades">Habilidades</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#sobre-mi" data-i18n="navAbout">Sobre Mí</a></li>
+                <li><a href="#experiencia" data-i18n="navExp">Experiencia</a></li>
+                <li><a href="#educacion" data-i18n="navEdu">Educación</a></li>
+                <li><a href="#habilidades" data-i18n="navSkills">Habilidades</a></li>
+                <li><a href="#contacto" data-i18n="navContact">Contacto</a></li>
+                <li><button class="lang-toggle" id="langToggle" onclick="switchLanguage()">EN</button></li>
             </ul>
         </div>
     </nav>
@@ -808,15 +828,15 @@
         <img src="foto2.jpeg" alt="Diego Cáceres" class="hero-photo">
         <h1>Diego Cáceres</h1>
         <div class="dual-roles">
-            <span class="role-badge finance">Contador Auditor</span>
+            <span class="role-badge finance" data-i18n="roleFinance">Contador Auditor</span>
             <span class="role-badge tech">Fullstack Developer</span>
         </div>
-        <p class="location">Santiago Centro, Chile &middot; 28 años</p>
+        <p class="location" data-i18n="heroLocation">Santiago Centro, Chile &middot; 28 años</p>
         <div class="hero-links">
             <a href="mailto:diegoalberto.caceresmoraga@gmail.com">Email</a>
             <a href="tel:+56931958695">+56 9 3195 8695</a>
-            <a href="#experiencia">Ver Trayectoria</a>
-            <a href="cv.html" style="background:rgba(255,255,255,0.15);font-weight:600;">&#128424; CV Imprimible</a>
+            <a href="#experiencia" data-i18n="heroCareer">Ver Trayectoria</a>
+            <a href="cv.html" style="background:rgba(255,255,255,0.15);font-weight:600;" data-i18n="heroCv">&#128424; CV Imprimible</a>
         </div>
     </section>
 
@@ -825,11 +845,11 @@
         <div class="switcher-inner">
             <div class="profile-tab active-finance" id="tabFinance" onclick="switchProfile('finance')">
                 <span class="tab-icon">&#9879;</span>
-                Contador Auditor
+                <span data-i18n="tabFinance">Contador Auditor</span>
             </div>
             <div class="profile-tab" id="tabTech" onclick="switchProfile('tech')">
                 <span class="tab-icon">&lt;/&gt;</span>
-                Fullstack Developer
+                <span>Fullstack Developer</span>
             </div>
         </div>
     </div>
@@ -837,20 +857,20 @@
     <!-- Sobre Mi -->
     <section class="about-section" id="sobre-mi">
         <div class="container">
-            <h2 class="section-title">Sobre Mí</h2>
+            <h2 class="section-title" data-i18n="titleAbout">Sobre Mí</h2>
             <div class="section-line" id="aboutLine"></div>
             <div class="about-layout">
             <img src="foto1.jpeg" alt="Diego Cáceres" class="about-photo">
             <div class="about-right">
             <div class="about-text">
-                <p class="about-content" id="aboutFinance">
+                <p class="about-content" id="aboutFinance" data-i18n="aboutFinance">
                     Contador Auditor con más de 7 años de experiencia en contabilidad, remuneraciones
                     e impuestos para holdings inmobiliarios, fintech, agencias digitales y consultoras.
                     Especializado en preparación y análisis de estados financieros bajo normas PCGA, IFRS
                     y US GAAP, declaración de impuestos en Chile y Estados Unidos, liderazgo de equipos contables,
                     mejora de procesos y automatización, y reportería con análisis de datos en SQL.
                 </p>
-                <p class="about-content hidden" id="aboutTech">
+                <p class="about-content hidden" id="aboutTech" data-i18n="aboutTech">
                     Profesional híbrido que combina una sólida base en contabilidad y finanzas con
                     habilidades en desarrollo de software. Experto en desarrollo de sistemas ERP/CRM.
                     Experiencia como CTO en una Fintech contable, liderando la estrategia tecnológica.
@@ -862,30 +882,30 @@
             <div class="about-stats" id="statsFinance">
                 <div class="stat-card">
                     <div class="stat-number">+7</div>
-                    <div class="stat-label">Años de experiencia</div>
+                    <div class="stat-label" data-i18n="statYears">Años de experiencia</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-number">6</div>
-                    <div class="stat-label">Sistemas ERP dominados</div>
+                    <div class="stat-label" data-i18n="statErp">Sistemas ERP dominados</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-number">200+</div>
-                    <div class="stat-label">Empresas asesoradas</div>
+                    <div class="stat-label" data-i18n="statCompanies">Empresas asesoradas</div>
                 </div>
             </div>
             <!-- Stats Tech -->
             <div class="about-stats hidden" id="statsTech">
                 <div class="stat-card">
                     <div class="stat-number tech-color">3</div>
-                    <div class="stat-label">Lenguajes de programación</div>
+                    <div class="stat-label" data-i18n="statLangs">Lenguajes de programación</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-number tech-color">CIO</div>
-                    <div class="stat-label">Liderazgo tecnológico</div>
+                    <div class="stat-label" data-i18n="statLeadership">Liderazgo tecnológico</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-number tech-color">Fintech</div>
-                    <div class="stat-label">Sector de innovación</div>
+                    <div class="stat-label" data-i18n="statSector">Sector de innovación</div>
                 </div>
             </div>
             </div><!-- close about-right -->
@@ -896,7 +916,7 @@
     <!-- Experiencia -->
     <section class="experience-section" id="experiencia">
         <div class="container">
-            <h2 class="section-title">Experiencia Profesional</h2>
+            <h2 class="section-title" data-i18n="titleExp">Experiencia Profesional</h2>
             <div class="section-line" id="expLine"></div>
             <div class="timeline">
 
@@ -908,9 +928,9 @@
                             <span class="badge tech-badge">Tech</span>
                         </div>
                         <div class="job-company tech-company">Numera - Fintech Contable</div>
-                        <div class="job-meta">Santiago, Chile | 2026 - Presente</div>
+                        <div class="job-meta" data-i18n="metaCto">Santiago, Chile | 2026 - Presente</div>
                     </div>
-                    <p class="job-description">
+                    <p class="job-description" data-i18n="descCto">
                         Liderazgo tecnológico del ERP contable. Foco en el desarrollo y lanzamiento
                         de la APP móvil de Numera (Android / iOS) desarrollada en Dart con Flutter.
                         Gestión y desarrollo continuo del CRM integrado.
@@ -935,18 +955,18 @@
                         <div class="job-company tech-company">Numera - Fintech Contable</div>
                         <div class="job-meta">Santiago, Chile | 2025</div>
                     </div>
-                    <p class="job-description">
+                    <p class="job-description" data-i18n="descCeo">
                         Dirección general y tecnológica de la empresa. Consolidación de una
                         cartera de 100+ suscriptores de pago (clientes recurrentes). Desarrollo
                         de CRM integrado con Google Meet y Gmail, e implementación de pasarela
                         de pago Payku/Reveniu.
                     </p>
                     <div class="job-tools">
-                        <span>Estrategia de negocio</span>
+                        <span data-i18n="tagStrategy">Estrategia de negocio</span>
                         <span>CRM</span>
                         <span>Google Meet / Gmail</span>
                         <span>Payku / Reveniu</span>
-                        <span>100+ clientes</span>
+                        <span data-i18n="tagClients">100+ clientes</span>
                     </div>
                 </div>
 
@@ -960,7 +980,7 @@
                         <div class="job-company tech-company">Numera - Fintech Contable</div>
                         <div class="job-meta">Santiago, Chile | 2023 - 2024</div>
                     </div>
-                    <p class="job-description">
+                    <p class="job-description" data-i18n="descDev">
                         Desarrollo fullstack del ERP contable. Creación de un sistema con
                         reportería completa bajo normas IFRS, integrado con el Servicio de
                         Impuestos Internos (SII).
@@ -968,9 +988,9 @@
                     <div class="job-tools">
                         <span>Python</span>
                         <span>HTML / CSS / JS</span>
-                        <span>Bases de datos</span>
+                        <span data-i18n="tagDb">Bases de datos</span>
                         <span>IFRS</span>
-                        <span>Integración SII</span>
+                        <span data-i18n="tagSii">Integración SII</span>
                     </div>
                 </div>
 
@@ -978,13 +998,13 @@
                 <div class="timeline-item finance-dot" data-profile="finance">
                     <div class="job-header">
                         <div class="job-title">
-                            Jefe Contable
-                            <span class="badge finance-badge">Finanzas</span>
+                            <span data-i18n="titleJefe">Jefe Contable</span>
+                            <span class="badge finance-badge" data-i18n="badgeFinance">Finanzas</span>
                         </div>
                         <div class="job-company">CafCapital - Holding Inmobiliario</div>
                         <div class="job-meta">Santiago, Chile | 2020 - 2022</div>
                     </div>
-                    <p class="job-description">
+                    <p class="job-description" data-i18n="descJefe">
                         Coordinación del equipo contable (3 personas). Emisión de estados financieros
                         por empresa y consolidados: Balance, Estado de flujo de efectivo, Estado de
                         resultados y Estado de variación patrimonial. Gestión integral de impuestos:
@@ -1001,13 +1021,13 @@
                 <div class="timeline-item finance-dot" data-profile="finance">
                     <div class="job-header">
                         <div class="job-title">
-                            Contador
-                            <span class="badge finance-badge">Finanzas</span>
+                            <span data-i18n="titleContador">Contador</span>
+                            <span class="badge finance-badge" data-i18n="badgeFinance2">Finanzas</span>
                         </div>
-                        <div class="job-company">Collection Services - Empresa de cobranzas</div>
+                        <div class="job-company" data-i18n="compCollection">Collection Services - Empresa de cobranzas</div>
                         <div class="job-meta">Santiago, Chile | 2019</div>
                     </div>
-                    <p class="job-description">
+                    <p class="job-description" data-i18n="descContador">
                         Encargado de contabilidad, remuneraciones e impuestos. Reportes mensuales de
                         estados financieros, Balance clasificado y 8 columnas, análisis de cuentas,
                         Estado de resultados corporativo y por centros de costos. Elaboración de contratos,
@@ -1023,13 +1043,13 @@
                 <div class="timeline-item finance-dot" data-profile="finance">
                     <div class="job-header">
                         <div class="job-title">
-                            Administrativo
-                            <span class="badge finance-badge">Finanzas</span>
+                            <span data-i18n="titleAdmin">Administrativo</span>
+                            <span class="badge finance-badge" data-i18n="badgeFinance3">Finanzas</span>
                         </div>
-                        <div class="job-company">Big Band Digital - Agencia de publicidad digital</div>
+                        <div class="job-company" data-i18n="compBigband">Big Band Digital - Agencia de publicidad digital</div>
                         <div class="job-meta">Santiago, Chile | 2018</div>
                     </div>
-                    <p class="job-description">
+                    <p class="job-description" data-i18n="descAdmin">
                         Coordinación del flujo de información entre directorio y oficina contable externa.
                         Flujos de caja, operaciones de factoring, nóminas bancarias, compra de divisas
                         (USD, EUR), remesas internacionales, control de facturación y cobranza preventiva
@@ -1046,13 +1066,13 @@
                 <div class="timeline-item finance-dot" data-profile="finance">
                     <div class="job-header">
                         <div class="job-title">
-                            Asistente Contable
-                            <span class="badge finance-badge">Finanzas</span>
+                            <span data-i18n="titleAsistente">Asistente Contable</span>
+                            <span class="badge finance-badge" data-i18n="badgeFinance4">Finanzas</span>
                         </div>
                         <div class="job-company">ASB Gestión Contable</div>
                         <div class="job-meta">Santiago, Chile | 2017</div>
                     </div>
-                    <p class="job-description">
+                    <p class="job-description" data-i18n="descAsistente">
                         Cartera de clientes asignada: registros contables, estados financieros
                         (balance 8 columnas, estado de resultados), declaraciones de impuestos (F29),
                         atención de clientes y gestión documental.
@@ -1070,13 +1090,13 @@
     <!-- Educacion -->
     <section class="education-section" id="educacion">
         <div class="container">
-            <h2 class="section-title">Educación</h2>
+            <h2 class="section-title" data-i18n="titleEdu">Educación</h2>
             <div class="section-line" id="eduLine"></div>
             <div class="edu-grid">
                 <div class="edu-card">
                     <div class="edu-year">2017 - 2023</div>
-                    <div class="edu-title">Contador Auditor</div>
-                    <div class="edu-school">Escuela de Contadores Auditores de Santiago</div>
+                    <div class="edu-title" data-i18n="eduContador">Contador Auditor</div>
+                    <div class="edu-school" data-i18n="eduSchool1">Escuela de Contadores Auditores de Santiago</div>
                 </div>
                 <div class="edu-card tech-border">
                     <div class="edu-year tech-color">2024</div>
@@ -1084,9 +1104,9 @@
                     <div class="edu-school">Latin American Business Institute</div>
                 </div>
                 <div class="edu-card tech-border">
-                    <div class="edu-year tech-color">2023 - Presente</div>
-                    <div class="edu-title">Programación Fullstack</div>
-                    <div class="edu-school">Autodidacta</div>
+                    <div class="edu-year tech-color" data-i18n="eduYearProg">2023 - Presente</div>
+                    <div class="edu-title" data-i18n="eduProg">Programación Fullstack</div>
+                    <div class="edu-school" data-i18n="eduSelfTaught">Autodidacta</div>
                 </div>
             </div>
         </div>
@@ -1095,12 +1115,12 @@
     <!-- Normas Contables -->
     <section class="normas-section" id="normas">
         <div class="container">
-            <h2 class="section-title">Normas Contables</h2>
+            <h2 class="section-title" data-i18n="titleNormas">Normas Contables</h2>
             <div class="section-line"></div>
             <div class="normas-grid">
                 <div class="norma-card">
                     <div class="norma-name">PCGA</div>
-                    <div class="norma-desc">Principios de Contabilidad Generalmente Aceptados</div>
+                    <div class="norma-desc" data-i18n="normaPcga">Principios de Contabilidad Generalmente Aceptados</div>
                 </div>
                 <div class="norma-card">
                     <div class="norma-name">IFRS</div>
@@ -1117,13 +1137,13 @@
     <!-- Habilidades -->
     <section class="skills-section" id="habilidades">
         <div class="container">
-            <h2 class="section-title">Habilidades y Herramientas</h2>
+            <h2 class="section-title" data-i18n="titleSkills">Habilidades y Herramientas</h2>
             <div class="section-line" id="skillsLine"></div>
             <div class="skills-grid">
 
                 <!-- Finance skills -->
                 <div class="skill-group" data-skill="finance">
-                    <h3><span class="dot finance-dot"></span> Sistemas ERP</h3>
+                    <h3><span class="dot finance-dot"></span> <span data-i18n="skillErp">Sistemas ERP</span></h3>
                     <div class="skill-tags">
                         <span>Softland</span>
                         <span>Defontana</span>
@@ -1135,13 +1155,13 @@
                 </div>
 
                 <div class="skill-group" data-skill="finance">
-                    <h3><span class="dot finance-dot"></span> Contabilidad & Tributación</h3>
+                    <h3><span class="dot finance-dot"></span> <span data-i18n="skillAccounting">Contabilidad & Tributación</span></h3>
                     <div class="skill-tags">
-                        <span>Estados Financieros</span>
-                        <span>Impuestos Chile</span>
-                        <span>Impuestos USA</span>
-                        <span>Remuneraciones</span>
-                        <span>Consolidación</span>
+                        <span data-i18n="tagFinStatements">Estados Financieros</span>
+                        <span data-i18n="tagTaxChile">Impuestos Chile</span>
+                        <span data-i18n="tagTaxUsa">Impuestos USA</span>
+                        <span data-i18n="tagPayroll">Remuneraciones</span>
+                        <span data-i18n="tagConsolidation">Consolidación</span>
                     </div>
                 </div>
 
@@ -1158,7 +1178,7 @@
                 </div>
 
                 <div class="skill-group" data-skill="tech">
-                    <h3><span class="dot tech-dot"></span> Backend & Datos</h3>
+                    <h3><span class="dot tech-dot"></span> <span data-i18n="skillBackend">Backend & Datos</span></h3>
                     <div class="skill-tags">
                         <span class="tech-hover">Python</span>
                         <span class="tech-hover">Flask</span>
@@ -1166,15 +1186,15 @@
                         <span class="tech-hover">SQL</span>
                         <span class="tech-hover">APIs REST</span>
                         <span class="tech-hover">Git</span>
-                        <span class="tech-hover">Bases de datos relacionales</span>
+                        <span class="tech-hover" data-i18n="tagRelDb">Bases de datos relacionales</span>
                     </div>
                 </div>
 
                 <!-- Shared skills -->
                 <div class="skill-group" data-skill="shared">
-                    <h3>Ofimática</h3>
+                    <h3 data-i18n="skillOffice">Ofimática</h3>
                     <div class="skill-tags">
-                        <span>Excel Avanzado</span>
+                        <span data-i18n="tagExcel">Excel Avanzado</span>
                         <span>Google Sheets</span>
                         <span>Microsoft Office</span>
                         <span>Outlook</span>
@@ -1182,14 +1202,14 @@
                 </div>
 
                 <div class="skill-group" data-skill="shared">
-                    <h3>Competencias & Idiomas</h3>
+                    <h3 data-i18n="skillComp">Competencias & Idiomas</h3>
                     <div class="skill-tags">
-                        <span>Liderazgo de equipos</span>
-                        <span>Analítico</span>
-                        <span>Autodidacta</span>
-                        <span>Responsable</span>
-                        <span>Español (Nativo)</span>
-                        <span>Inglés (Conversacional y Escrito)</span>
+                        <span data-i18n="tagLeadership">Liderazgo de equipos</span>
+                        <span data-i18n="tagAnalytical">Analítico</span>
+                        <span data-i18n="tagSelfTaught">Autodidacta</span>
+                        <span data-i18n="tagResponsible">Responsable</span>
+                        <span data-i18n="tagSpanish">Español (Nativo)</span>
+                        <span data-i18n="tagEnglish">Inglés (Conversacional y Escrito)</span>
                     </div>
                 </div>
 
@@ -1200,9 +1220,9 @@
     <!-- Contacto -->
     <section class="contact-section" id="contacto">
         <div class="container">
-            <h2 class="section-title">Contacto</h2>
+            <h2 class="section-title" data-i18n="titleContact">Contacto</h2>
             <div class="section-line" style="margin-left:auto;margin-right:auto;"></div>
-            <p class="contact-text">
+            <p class="contact-text" data-i18n="contactText">
                 Estoy abierto a nuevas oportunidades en contabilidad, finanzas y tecnología.
             </p>
             <div class="contact-cards">
@@ -1215,14 +1235,14 @@
                 </div>
                 <div class="contact-card">
                     <div class="contact-icon">&#9742;</div>
-                    <div class="contact-label">Teléfono</div>
+                    <div class="contact-label" data-i18n="labelPhone">Teléfono</div>
                     <div class="contact-value">
                         <a href="tel:+56931958695">+56 9 3195 8695</a>
                     </div>
                 </div>
                 <div class="contact-card">
                     <div class="contact-icon">&#9873;</div>
-                    <div class="contact-label">Ubicación</div>
+                    <div class="contact-label" data-i18n="labelLocation">Ubicación</div>
                     <div class="contact-value">Santiago Centro, Chile</div>
                 </div>
             </div>
@@ -1230,12 +1250,198 @@
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer data-i18n="footer">
         &copy; 2025 Diego Cáceres. Todos los derechos reservados.
     </footer>
 
     <script>
         let currentProfile = 'finance';
+        let currentLang = 'es';
+
+        // ===== TRANSLATIONS =====
+        const translations = {
+            en: {
+                // Nav
+                navAbout: 'About Me',
+                navExp: 'Experience',
+                navEdu: 'Education',
+                navSkills: 'Skills',
+                navContact: 'Contact',
+                // Hero
+                roleFinance: 'Certified Auditor',
+                heroLocation: 'Santiago Centro, Chile \u00b7 28 years old',
+                heroCareer: 'View Career',
+                heroCv: '\u{1F5A8} Printable CV',
+                // Switcher
+                tabFinance: 'Certified Auditor',
+                // Section titles
+                titleAbout: 'About Me',
+                titleExp: 'Professional Experience',
+                titleEdu: 'Education',
+                titleNormas: 'Accounting Standards',
+                titleSkills: 'Skills & Tools',
+                titleContact: 'Contact',
+                // About
+                aboutFinance: 'Certified Auditor with over 7 years of experience in accounting, payroll and taxes for real estate holdings, fintech, digital agencies and consulting firms. Specialized in preparation and analysis of financial statements under PCGA, IFRS and US GAAP standards, tax filing in Chile and the United States, accounting team leadership, process improvement and automation, and reporting with SQL data analysis.',
+                aboutTech: 'Hybrid professional combining a solid foundation in accounting and finance with software development skills. Expert in ERP/CRM systems development. Experience as CTO at an accounting Fintech, leading technological strategy. Proficiency in web development (HTML, CSS, JavaScript), Python applications, mobile development with Dart/Flutter and relational database design.',
+                // Stats
+                statYears: 'Years of experience',
+                statErp: 'ERP systems mastered',
+                statCompanies: 'Companies advised',
+                statLangs: 'Programming languages',
+                statLeadership: 'Technology leadership',
+                statSector: 'Innovation sector',
+                // Experience - meta
+                metaCto: 'Santiago, Chile | 2026 - Present',
+                // Experience - descriptions
+                descCto: 'Technology leadership of accounting ERP. Focus on development and launch of Numera\'s mobile APP (Android / iOS) built with Dart and Flutter. Management and continuous development of integrated CRM.',
+                descCeo: 'General and technology management of the company. Consolidation of a portfolio of 100+ paying subscribers (recurring clients). Development of CRM integrated with Google Meet and Gmail, and implementation of Payku/Reveniu payment gateway.',
+                descDev: 'Fullstack development of accounting ERP. Creation of a system with complete IFRS reporting, integrated with Chilean Internal Revenue Service (SII).',
+                descJefe: 'Coordination of accounting team (3 people). Financial statement preparation by entity and consolidated: Balance Sheet, Cash Flow Statement, Income Statement and Statement of Changes in Equity. Comprehensive tax management: Income Tax, Monthly Taxes, Real Estate Surcharge and Property Taxes.',
+                descContador: 'In charge of accounting, payroll and taxes. Monthly financial statement reports, Classified Balance Sheet and 8-column worksheet, account analysis, Corporate Income Statement and by cost centers. Preparation of contracts, payroll settlements, severance payments and tax returns (F29, F22).',
+                descAdmin: 'Coordination of information flow between board and external accounting office. Cash flows, factoring operations, bank payrolls, currency purchases (USD, EUR), international remittances, billing control and preventive and administrative collection of client portfolio.',
+                descAsistente: 'Assigned client portfolio: accounting records, financial statements (8-column balance sheet, income statement), tax returns (F29), client service and document management.',
+                // Experience - titles & badges
+                titleJefe: 'Head Accountant',
+                badgeFinance: 'Finance',
+                titleContador: 'Accountant',
+                badgeFinance2: 'Finance',
+                compCollection: 'Collection Services - Debt collection company',
+                titleAdmin: 'Administrative Coordinator',
+                badgeFinance3: 'Finance',
+                compBigband: 'Big Band Digital - Digital advertising agency',
+                titleAsistente: 'Accounting Assistant',
+                badgeFinance4: 'Finance',
+                // Experience - tags
+                tagStrategy: 'Business strategy',
+                tagClients: '100+ clients',
+                tagDb: 'Databases',
+                tagSii: 'SII Integration',
+                // Education
+                eduContador: 'Certified Auditor',
+                eduSchool1: 'School of Certified Auditors of Santiago',
+                eduYearProg: '2023 - Present',
+                eduProg: 'Fullstack Programming',
+                eduSelfTaught: 'Self-taught',
+                // Normas
+                normaPcga: 'Generally Accepted Accounting Principles',
+                // Skills
+                skillErp: 'ERP Systems',
+                skillAccounting: 'Accounting & Taxation',
+                skillBackend: 'Backend & Data',
+                skillOffice: 'Office Tools',
+                skillComp: 'Competencies & Languages',
+                tagFinStatements: 'Financial Statements',
+                tagTaxChile: 'Chile Taxes',
+                tagTaxUsa: 'USA Taxes',
+                tagPayroll: 'Payroll',
+                tagConsolidation: 'Consolidation',
+                tagRelDb: 'Relational databases',
+                tagExcel: 'Advanced Excel',
+                tagLeadership: 'Team leadership',
+                tagAnalytical: 'Analytical',
+                tagSelfTaught: 'Self-taught',
+                tagResponsible: 'Responsible',
+                tagSpanish: 'Spanish (Native)',
+                tagEnglish: 'English (Conversational & Written)',
+                // Contact
+                contactText: 'I\'m open to new opportunities in accounting, finance and technology.',
+                labelPhone: 'Phone',
+                labelLocation: 'Location',
+                // Footer
+                footer: '\u00a9 2025 Diego Cáceres. All rights reserved.'
+            },
+            es: {
+                navAbout: 'Sobre Mí',
+                navExp: 'Experiencia',
+                navEdu: 'Educación',
+                navSkills: 'Habilidades',
+                navContact: 'Contacto',
+                roleFinance: 'Contador Auditor',
+                heroLocation: 'Santiago Centro, Chile \u00b7 28 años',
+                heroCareer: 'Ver Trayectoria',
+                heroCv: '\u{1F5A8} CV Imprimible',
+                tabFinance: 'Contador Auditor',
+                titleAbout: 'Sobre Mí',
+                titleExp: 'Experiencia Profesional',
+                titleEdu: 'Educación',
+                titleNormas: 'Normas Contables',
+                titleSkills: 'Habilidades y Herramientas',
+                titleContact: 'Contacto',
+                aboutFinance: 'Contador Auditor con más de 7 años de experiencia en contabilidad, remuneraciones e impuestos para holdings inmobiliarios, fintech, agencias digitales y consultoras. Especializado en preparación y análisis de estados financieros bajo normas PCGA, IFRS y US GAAP, declaración de impuestos en Chile y Estados Unidos, liderazgo de equipos contables, mejora de procesos y automatización, y reportería con análisis de datos en SQL.',
+                aboutTech: 'Profesional híbrido que combina una sólida base en contabilidad y finanzas con habilidades en desarrollo de software. Experto en desarrollo de sistemas ERP/CRM. Experiencia como CTO en una Fintech contable, liderando la estrategia tecnológica. Manejo de desarrollo web (HTML, CSS, JavaScript), aplicaciones con Python, desarrollo móvil con Dart/Flutter y diseño de bases de datos relacionales.',
+                statYears: 'Años de experiencia',
+                statErp: 'Sistemas ERP dominados',
+                statCompanies: 'Empresas asesoradas',
+                statLangs: 'Lenguajes de programación',
+                statLeadership: 'Liderazgo tecnológico',
+                statSector: 'Sector de innovación',
+                metaCto: 'Santiago, Chile | 2026 - Presente',
+                descCto: 'Liderazgo tecnológico del ERP contable. Foco en el desarrollo y lanzamiento de la APP móvil de Numera (Android / iOS) desarrollada en Dart con Flutter. Gestión y desarrollo continuo del CRM integrado.',
+                descCeo: 'Dirección general y tecnológica de la empresa. Consolidación de una cartera de 100+ suscriptores de pago (clientes recurrentes). Desarrollo de CRM integrado con Google Meet y Gmail, e implementación de pasarela de pago Payku/Reveniu.',
+                descDev: 'Desarrollo fullstack del ERP contable. Creación de un sistema con reportería completa bajo normas IFRS, integrado con el Servicio de Impuestos Internos (SII).',
+                descJefe: 'Coordinación del equipo contable (3 personas). Emisión de estados financieros por empresa y consolidados: Balance, Estado de flujo de efectivo, Estado de resultados y Estado de variación patrimonial. Gestión integral de impuestos: Renta, Impuestos mensuales, Sobretasa de bienes raíces y Contribuciones.',
+                descContador: 'Encargado de contabilidad, remuneraciones e impuestos. Reportes mensuales de estados financieros, Balance clasificado y 8 columnas, análisis de cuentas, Estado de resultados corporativo y por centros de costos. Elaboración de contratos, liquidaciones de sueldo, finiquitos y declaraciones de impuestos (F29, F22).',
+                descAdmin: 'Coordinación del flujo de información entre directorio y oficina contable externa. Flujos de caja, operaciones de factoring, nóminas bancarias, compra de divisas (USD, EUR), remesas internacionales, control de facturación y cobranza preventiva y administrativa de la cartera de clientes.',
+                descAsistente: 'Cartera de clientes asignada: registros contables, estados financieros (balance 8 columnas, estado de resultados), declaraciones de impuestos (F29), atención de clientes y gestión documental.',
+                titleJefe: 'Jefe Contable',
+                badgeFinance: 'Finanzas',
+                titleContador: 'Contador',
+                badgeFinance2: 'Finanzas',
+                compCollection: 'Collection Services - Empresa de cobranzas',
+                titleAdmin: 'Administrativo',
+                badgeFinance3: 'Finanzas',
+                compBigband: 'Big Band Digital - Agencia de publicidad digital',
+                titleAsistente: 'Asistente Contable',
+                badgeFinance4: 'Finanzas',
+                tagStrategy: 'Estrategia de negocio',
+                tagClients: '100+ clientes',
+                tagDb: 'Bases de datos',
+                tagSii: 'Integración SII',
+                eduContador: 'Contador Auditor',
+                eduSchool1: 'Escuela de Contadores Auditores de Santiago',
+                eduYearProg: '2023 - Presente',
+                eduProg: 'Programación Fullstack',
+                eduSelfTaught: 'Autodidacta',
+                normaPcga: 'Principios de Contabilidad Generalmente Aceptados',
+                skillErp: 'Sistemas ERP',
+                skillAccounting: 'Contabilidad & Tributación',
+                skillBackend: 'Backend & Datos',
+                skillOffice: 'Ofimática',
+                skillComp: 'Competencias & Idiomas',
+                tagFinStatements: 'Estados Financieros',
+                tagTaxChile: 'Impuestos Chile',
+                tagTaxUsa: 'Impuestos USA',
+                tagPayroll: 'Remuneraciones',
+                tagConsolidation: 'Consolidación',
+                tagRelDb: 'Bases de datos relacionales',
+                tagExcel: 'Excel Avanzado',
+                tagLeadership: 'Liderazgo de equipos',
+                tagAnalytical: 'Analítico',
+                tagSelfTaught: 'Autodidacta',
+                tagResponsible: 'Responsable',
+                tagSpanish: 'Español (Nativo)',
+                tagEnglish: 'Inglés (Conversacional y Escrito)',
+                contactText: 'Estoy abierto a nuevas oportunidades en contabilidad, finanzas y tecnología.',
+                labelPhone: 'Teléfono',
+                labelLocation: 'Ubicación',
+                footer: '\u00a9 2025 Diego Cáceres. Todos los derechos reservados.'
+            }
+        };
+
+        function switchLanguage() {
+            currentLang = currentLang === 'es' ? 'en' : 'es';
+            document.documentElement.lang = currentLang;
+            document.getElementById('langToggle').textContent = currentLang === 'es' ? 'EN' : 'ES';
+
+            const t = translations[currentLang];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key] !== undefined) {
+                    el.textContent = t[key];
+                }
+            });
+        }
 
         function switchProfile(profile) {
             currentProfile = profile;
