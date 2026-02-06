@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diego Cáceres - Contador Auditor & Fullstack Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a3a5c;
+            --primary-light: #2c5f8a;
+            --accent: #3498db;
+            --accent-tech: #10b981;
+            --text: #2c3e50;
+            --text-light: #5a6a7a;
+            --bg: #f8f9fa;
+            --white: #ffffff;
+            --border: #e0e6ed;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.7;
+        }
+
+        /* ===== NAV ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+            z-index: 1000;
+            padding: 0 2rem;
+        }
+
+        nav .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+
+        nav .logo {
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--primary);
+            transition: 0.3s;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            padding: 9rem 2rem 5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 50%;
+        }
+
+        .hero-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: top;
+            border: 4px solid rgba(255,255,255,0.3);
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.5px;
+        }
+
+        .hero .dual-roles {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hero .role-badge {
+            padding: 0.4rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .role-badge.finance {
+            background: rgba(52, 152, 219, 0.25);
+            border: 1.5px solid rgba(52, 152, 219, 0.6);
+        }
+
+        .role-badge.tech {
+            background: rgba(16, 185, 129, 0.25);
+            border: 1.5px solid rgba(16, 185, 129, 0.6);
+        }
+
+        .hero .location {
+            font-size: 0.95rem;
+            opacity: 0.7;
+            margin-bottom: 2rem;
+        }
+
+        .hero .hero-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hero .hero-links a {
+            color: var(--white);
+            text-decoration: none;
+            padding: 0.6rem 1.5rem;
+            border: 1.5px solid rgba(255,255,255,0.4);
+            border-radius: 30px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .hero .hero-links a:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: rgba(255,255,255,0.8);
+        }
+
+        /* ===== PROFILE SWITCHER ===== */
+        .profile-switcher {
+            background: var(--white);
+            padding: 0;
+            position: sticky;
+            top: 60px;
+            z-index: 999;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .switcher-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+        }
+
+        .profile-tab {
+            flex: 1;
+            max-width: 300px;
+            padding: 1rem 2rem;
+            text-align: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            user-select: none;
+        }
+
+        .profile-tab:hover {
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        .profile-tab.active-finance {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        .profile-tab.active-tech {
+            color: var(--accent-tech);
+            border-bottom-color: var(--accent-tech);
+        }
+
+        .profile-tab .tab-icon {
+            display: block;
+            font-size: 1.3rem;
+            margin-bottom: 0.2rem;
+        }
+
+        /* ===== SECTIONS ===== */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-line {
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+            margin-bottom: 2.5rem;
+            transition: background 0.3s;
+        }
+
+        .section-line.tech-line {
+            background: var(--accent-tech);
+        }
+
+        /* ===== ABOUT ===== */
+        .about-section {
+            background: var(--white);
+        }
+
+        .about-layout {
+            display: flex;
+            gap: 2.5rem;
+            align-items: flex-start;
+        }
+
+        .about-photo {
+            width: 220px;
+            min-width: 220px;
+            height: 280px;
+            border-radius: 12px;
+            object-fit: cover;
+            object-position: top;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .about-right {
+            flex: 1;
+        }
+
+        .about-text {
+            position: relative;
+            min-height: 80px;
+        }
+
+        .about-content {
+            font-size: 1.05rem;
+            color: var(--text-light);
+            max-width: 750px;
+            line-height: 1.9;
+            transition: opacity 0.3s;
+        }
+
+        .about-content.hidden {
+            display: none;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .about-stats.hidden {
+            display: none;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            background: var(--bg);
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .stat-card .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .stat-card .stat-number.tech-color {
+            color: var(--accent-tech);
+        }
+
+        .stat-card .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-top: 0.25rem;
+        }
+
+        /* ===== EXPERIENCE ===== */
+        .experience-section {
+            background: var(--bg);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            bottom: 0.5rem;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 1.5rem;
+            transition: opacity 0.3s;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.35rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 3px solid var(--bg);
+            transition: background 0.3s;
+        }
+
+        .timeline-item.finance-dot::before {
+            background: var(--accent);
+        }
+
+        .timeline-item.tech-dot::before {
+            background: var(--accent-tech);
+        }
+
+        .timeline-item.dimmed {
+            opacity: 0.35;
+        }
+
+        .timeline-item .job-header {
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-item .job-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            font-size: 0.65rem;
+            padding: 0.15rem 0.55rem;
+            border-radius: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            vertical-align: middle;
+        }
+
+        .badge.finance-badge {
+            background: rgba(52, 152, 219, 0.12);
+            color: var(--accent);
+        }
+
+        .badge.tech-badge {
+            background: rgba(16, 185, 129, 0.12);
+            color: var(--accent-tech);
+        }
+
+        .timeline-item .job-company {
+            font-size: 0.95rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .timeline-item .job-company.tech-company {
+            color: var(--accent-tech);
+        }
+
+        .timeline-item .job-meta {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-top: 0.2rem;
+        }
+
+        .timeline-item .job-description {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-item .job-tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .timeline-item .job-tools span {
+            background: var(--white);
+            border: 1px solid var(--border);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        /* ===== EDUCATION ===== */
+        .education-section {
+            background: var(--white);
+        }
+
+        .edu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .edu-card {
+            padding: 1.75rem;
+            background: var(--bg);
+            border-radius: 12px;
+            border-left: 4px solid var(--accent);
+            transition: transform 0.3s;
+        }
+
+        .edu-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .edu-card.tech-border {
+            border-left-color: var(--accent-tech);
+        }
+
+        .edu-card .edu-year {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 0.3rem;
+        }
+
+        .edu-card .edu-year.tech-color {
+            color: var(--accent-tech);
+        }
+
+        .edu-card .edu-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .edu-card .edu-school {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-top: 0.2rem;
+        }
+
+        /* ===== SKILLS ===== */
+        .skills-section {
+            background: var(--bg);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .skill-group {
+            transition: opacity 0.3s;
+        }
+
+        .skill-group.hidden {
+            display: none;
+        }
+
+        .skill-group h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .skill-group h3 .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .dot.finance-dot { background: var(--accent); }
+        .dot.tech-dot { background: var(--accent-tech); }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tags span {
+            background: var(--white);
+            border: 1px solid var(--border);
+            padding: 0.4rem 1rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            transition: all 0.3s;
+        }
+
+        .skill-tags span:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .skill-tags span.tech-hover:hover {
+            border-color: var(--accent-tech);
+            color: var(--accent-tech);
+        }
+
+        /* ===== NORMAS ===== */
+        .normas-section {
+            background: var(--white);
+        }
+
+        .normas-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .norma-card {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: var(--bg);
+            border-radius: 12px;
+            transition: transform 0.3s;
+        }
+
+        .norma-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .norma-card .norma-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .norma-card .norma-desc {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-top: 0.3rem;
+        }
+
+        /* ===== CONTACT ===== */
+        .contact-section {
+            background: var(--primary);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .contact-section .section-title {
+            color: var(--white);
+        }
+
+        .contact-section .section-line {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-text {
+            font-size: 1.05rem;
+            opacity: 0.85;
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            padding: 1.5rem 1rem;
+            background: rgba(255,255,255,0.08);
+            border-radius: 10px;
+            transition: background 0.3s;
+        }
+
+        .contact-card:hover {
+            background: rgba(255,255,255,0.14);
+        }
+
+        .contact-card .contact-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card .contact-label {
+            font-size: 0.8rem;
+            opacity: 0.6;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-card .contact-value {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .contact-card a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #0f2640;
+            color: rgba(255,255,255,0.4);
+            text-align: center;
+            padding: 1.5rem 2rem;
+            font-size: 0.8rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            nav .nav-links {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                flex-direction: column;
+                padding: 1rem 2rem;
+                gap: 1rem;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            }
+
+            nav .nav-links.active {
+                display: flex;
+            }
+
+            .hero {
+                padding: 8rem 1.5rem 4rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-photo {
+                width: 120px;
+                height: 120px;
+            }
+
+            .about-layout {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-photo {
+                width: 180px;
+                min-width: 180px;
+                height: 230px;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .edu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .normas-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline {
+                padding-left: 1.5rem;
+            }
+
+            .profile-tab {
+                padding: 0.75rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-inner">
+            <a href="#" class="logo">Diego Cáceres</a>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#sobre-mi">Sobre Mí</a></li>
+                <li><a href="#experiencia">Experiencia</a></li>
+                <li><a href="#educacion">Educación</a></li>
+                <li><a href="#habilidades">Habilidades</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <img src="foto2.jpeg" alt="Diego Cáceres" class="hero-photo">
+        <h1>Diego Cáceres</h1>
+        <div class="dual-roles">
+            <span class="role-badge finance">Contador Auditor</span>
+            <span class="role-badge tech">Fullstack Developer</span>
+        </div>
+        <p class="location">Santiago Centro, Chile &middot; 28 años</p>
+        <div class="hero-links">
+            <a href="mailto:diegoalberto.caceresmoraga@gmail.com">Email</a>
+            <a href="tel:+56984279572">+569 8427 9572</a>
+            <a href="#experiencia">Ver Trayectoria</a>
+        </div>
+    </section>
+
+    <!-- Profile Switcher -->
+    <div class="profile-switcher">
+        <div class="switcher-inner">
+            <div class="profile-tab active-finance" id="tabFinance" onclick="switchProfile('finance')">
+                <span class="tab-icon">&#9879;</span>
+                Contador Auditor
+            </div>
+            <div class="profile-tab" id="tabTech" onclick="switchProfile('tech')">
+                <span class="tab-icon">&lt;/&gt;</span>
+                Fullstack Developer
+            </div>
+        </div>
+    </div>
+
+    <!-- Sobre Mi -->
+    <section class="about-section" id="sobre-mi">
+        <div class="container">
+            <h2 class="section-title">Sobre Mí</h2>
+            <div class="section-line" id="aboutLine"></div>
+            <div class="about-layout">
+            <img src="foto1.jpeg" alt="Diego Cáceres" class="about-photo">
+            <div class="about-right">
+            <div class="about-text">
+                <p class="about-content" id="aboutFinance">
+                    Contador Auditor con más de 7 años de experiencia en contabilidad, remuneraciones
+                    e impuestos para holdings inmobiliarios, fintech, agencias digitales y consultoras.
+                    Especializado en preparación y análisis de estados financieros bajo normas PCGA, IFRS
+                    y US GAAP, declaración de impuestos en Chile y Estados Unidos, liderazgo de equipos contables,
+                    mejora de procesos y automatización, y reportería con análisis de datos en SQL.
+                </p>
+                <p class="about-content hidden" id="aboutTech">
+                    Profesional híbrido que combina una sólida base en contabilidad y finanzas con
+                    habilidades en desarrollo de software. Experto en desarrollo de sistemas ERP/CRM.
+                    Experiencia como CTO en una Fintech contable, liderando la estrategia tecnológica.
+                    Manejo de desarrollo web (HTML, CSS, JavaScript), aplicaciones con Python,
+                    desarrollo móvil con Dart/Flutter y diseño de bases de datos relacionales.
+                </p>
+            </div>
+            <!-- Stats Finance -->
+            <div class="about-stats" id="statsFinance">
+                <div class="stat-card">
+                    <div class="stat-number">+7</div>
+                    <div class="stat-label">Años de experiencia</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Sistemas ERP dominados</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">200+</div>
+                    <div class="stat-label">Empresas asesoradas</div>
+                </div>
+            </div>
+            <!-- Stats Tech -->
+            <div class="about-stats hidden" id="statsTech">
+                <div class="stat-card">
+                    <div class="stat-number tech-color">3</div>
+                    <div class="stat-label">Lenguajes de programación</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number tech-color">CIO</div>
+                    <div class="stat-label">Liderazgo tecnológico</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number tech-color">Fintech</div>
+                    <div class="stat-label">Sector de innovación</div>
+                </div>
+            </div>
+            </div><!-- close about-right -->
+            </div><!-- close about-layout -->
+        </div>
+    </section>
+
+    <!-- Experiencia -->
+    <section class="experience-section" id="experiencia">
+        <div class="container">
+            <h2 class="section-title">Experiencia Profesional</h2>
+            <div class="section-line" id="expLine"></div>
+            <div class="timeline">
+
+                <!-- Numera - CTO -->
+                <div class="timeline-item tech-dot" data-profile="tech">
+                    <div class="job-header">
+                        <div class="job-title">
+                            CTO
+                            <span class="badge tech-badge">Tech</span>
+                        </div>
+                        <div class="job-company tech-company">Numera - Fintech Contable</div>
+                        <div class="job-meta">Santiago, Chile | 2026 - Presente</div>
+                    </div>
+                    <p class="job-description">
+                        Liderazgo tecnológico del ERP contable. Foco en el desarrollo y lanzamiento
+                        de la APP móvil de Numera (Android / iOS) desarrollada en Dart con Flutter.
+                        Gestión y desarrollo continuo del CRM integrado.
+                    </p>
+                    <div class="job-tools">
+                        <span>Dart</span>
+                        <span>Flutter</span>
+                        <span>Android</span>
+                        <span>iOS</span>
+                        <span>CRM</span>
+                        <span>Python</span>
+                    </div>
+                </div>
+
+                <!-- Numera - CEO/CTO -->
+                <div class="timeline-item tech-dot" data-profile="tech">
+                    <div class="job-header">
+                        <div class="job-title">
+                            CEO / CTO
+                            <span class="badge tech-badge">Tech</span>
+                        </div>
+                        <div class="job-company tech-company">Numera - Fintech Contable</div>
+                        <div class="job-meta">Santiago, Chile | 2025</div>
+                    </div>
+                    <p class="job-description">
+                        Dirección general y tecnológica de la empresa. Consolidación de una
+                        cartera de 100+ suscriptores de pago (clientes recurrentes). Desarrollo
+                        de CRM integrado con Google Meet y Gmail, e implementación de pasarela
+                        de pago Payku/Reveniu.
+                    </p>
+                    <div class="job-tools">
+                        <span>Estrategia de negocio</span>
+                        <span>CRM</span>
+                        <span>Google Meet / Gmail</span>
+                        <span>Payku / Reveniu</span>
+                        <span>100+ clientes</span>
+                    </div>
+                </div>
+
+                <!-- Numera - Fullstack Developer -->
+                <div class="timeline-item tech-dot" data-profile="tech">
+                    <div class="job-header">
+                        <div class="job-title">
+                            Fullstack Developer
+                            <span class="badge tech-badge">Tech</span>
+                        </div>
+                        <div class="job-company tech-company">Numera - Fintech Contable</div>
+                        <div class="job-meta">Santiago, Chile | 2023 - 2024</div>
+                    </div>
+                    <p class="job-description">
+                        Desarrollo fullstack del ERP contable. Creación de un sistema con
+                        reportería completa bajo normas IFRS, integrado con el Servicio de
+                        Impuestos Internos (SII).
+                    </p>
+                    <div class="job-tools">
+                        <span>Python</span>
+                        <span>HTML / CSS / JS</span>
+                        <span>Bases de datos</span>
+                        <span>IFRS</span>
+                        <span>Integración SII</span>
+                    </div>
+                </div>
+
+                <!-- Grupo Caf Capital -->
+                <div class="timeline-item finance-dot" data-profile="finance">
+                    <div class="job-header">
+                        <div class="job-title">
+                            Jefe Contable
+                            <span class="badge finance-badge">Finanzas</span>
+                        </div>
+                        <div class="job-company">CafCapital - Holding Inmobiliario</div>
+                        <div class="job-meta">Santiago, Chile | 2020 - 2022</div>
+                    </div>
+                    <p class="job-description">
+                        Coordinación del equipo contable (3 personas). Emisión de estados financieros
+                        por empresa y consolidados: Balance, Estado de flujo de efectivo, Estado de
+                        resultados y Estado de variación patrimonial. Gestión integral de impuestos:
+                        Renta, Impuestos mensuales, Sobretasa de bienes raíces y Contribuciones.
+                    </p>
+                    <div class="job-tools">
+                        <span>ERP Drysoft</span>
+                        <span>Google Sheets</span>
+                        <span>Microsoft Excel</span>
+                    </div>
+                </div>
+
+                <!-- Collection Services -->
+                <div class="timeline-item finance-dot" data-profile="finance">
+                    <div class="job-header">
+                        <div class="job-title">
+                            Contador
+                            <span class="badge finance-badge">Finanzas</span>
+                        </div>
+                        <div class="job-company">Collection Services - Empresa de cobranzas</div>
+                        <div class="job-meta">Santiago, Chile | 2019</div>
+                    </div>
+                    <p class="job-description">
+                        Encargado de contabilidad, remuneraciones e impuestos. Reportes mensuales de
+                        estados financieros, Balance clasificado y 8 columnas, análisis de cuentas,
+                        Estado de resultados corporativo y por centros de costos. Elaboración de contratos,
+                        liquidaciones de sueldo, finiquitos y declaraciones de impuestos (F29, F22).
+                    </p>
+                    <div class="job-tools">
+                        <span>ERP Softland</span>
+                        <span>Microsoft Excel</span>
+                    </div>
+                </div>
+
+                <!-- Big Band Digital -->
+                <div class="timeline-item finance-dot" data-profile="finance">
+                    <div class="job-header">
+                        <div class="job-title">
+                            Administrativo
+                            <span class="badge finance-badge">Finanzas</span>
+                        </div>
+                        <div class="job-company">Big Band Digital - Agencia de publicidad digital</div>
+                        <div class="job-meta">Santiago, Chile | 2018</div>
+                    </div>
+                    <p class="job-description">
+                        Coordinación del flujo de información entre directorio y oficina contable externa.
+                        Flujos de caja, operaciones de factoring, nóminas bancarias, compra de divisas
+                        (USD, EUR), remesas internacionales, control de facturación y cobranza preventiva
+                        y administrativa de la cartera de clientes.
+                    </p>
+                    <div class="job-tools">
+                        <span>Excel</span>
+                        <span>Outlook</span>
+                        <span>OneNote</span>
+                    </div>
+                </div>
+
+                <!-- ASB -->
+                <div class="timeline-item finance-dot" data-profile="finance">
+                    <div class="job-header">
+                        <div class="job-title">
+                            Asistente Contable
+                            <span class="badge finance-badge">Finanzas</span>
+                        </div>
+                        <div class="job-company">ASB Gestión Contable</div>
+                        <div class="job-meta">Santiago, Chile | 2017</div>
+                    </div>
+                    <p class="job-description">
+                        Cartera de clientes asignada: registros contables, estados financieros
+                        (balance 8 columnas, estado de resultados), declaraciones de impuestos (F29),
+                        atención de clientes y gestión documental.
+                    </p>
+                    <div class="job-tools">
+                        <span>ERP Softland</span>
+                        <span>Microsoft Excel</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Educacion -->
+    <section class="education-section" id="educacion">
+        <div class="container">
+            <h2 class="section-title">Educación</h2>
+            <div class="section-line" id="eduLine"></div>
+            <div class="edu-grid">
+                <div class="edu-card">
+                    <div class="edu-year">2017 - 2023</div>
+                    <div class="edu-title">Contador Auditor</div>
+                    <div class="edu-school">Escuela de Contadores Auditores de Santiago</div>
+                </div>
+                <div class="edu-card tech-border">
+                    <div class="edu-year tech-color">2024</div>
+                    <div class="edu-title">Bookkeeper & Tax Preparer</div>
+                    <div class="edu-school">Latin American Business Institute</div>
+                </div>
+                <div class="edu-card tech-border">
+                    <div class="edu-year tech-color">2023 - Presente</div>
+                    <div class="edu-title">Programación Fullstack</div>
+                    <div class="edu-school">Autodidacta</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Normas Contables -->
+    <section class="normas-section" id="normas">
+        <div class="container">
+            <h2 class="section-title">Normas Contables</h2>
+            <div class="section-line"></div>
+            <div class="normas-grid">
+                <div class="norma-card">
+                    <div class="norma-name">PCGA</div>
+                    <div class="norma-desc">Principios de Contabilidad Generalmente Aceptados</div>
+                </div>
+                <div class="norma-card">
+                    <div class="norma-name">IFRS</div>
+                    <div class="norma-desc">International Financial Reporting Standards</div>
+                </div>
+                <div class="norma-card">
+                    <div class="norma-name">US GAAP</div>
+                    <div class="norma-desc">United States Generally Accepted Accounting Principles</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Habilidades -->
+    <section class="skills-section" id="habilidades">
+        <div class="container">
+            <h2 class="section-title">Habilidades y Herramientas</h2>
+            <div class="section-line" id="skillsLine"></div>
+            <div class="skills-grid">
+
+                <!-- Finance skills -->
+                <div class="skill-group" data-skill="finance">
+                    <h3><span class="dot finance-dot"></span> Sistemas ERP</h3>
+                    <div class="skill-tags">
+                        <span>Softland</span>
+                        <span>Defontana</span>
+                        <span>Manager</span>
+                        <span>Nubox</span>
+                        <span>Drysoft</span>
+                        <span>Kame</span>
+                    </div>
+                </div>
+
+                <div class="skill-group" data-skill="finance">
+                    <h3><span class="dot finance-dot"></span> Contabilidad & Tributación</h3>
+                    <div class="skill-tags">
+                        <span>Estados Financieros</span>
+                        <span>Impuestos Chile</span>
+                        <span>Impuestos USA</span>
+                        <span>Remuneraciones</span>
+                        <span>Consolidación</span>
+                    </div>
+                </div>
+
+                <!-- Tech skills -->
+                <div class="skill-group" data-skill="tech">
+                    <h3><span class="dot tech-dot"></span> Frontend & Mobile</h3>
+                    <div class="skill-tags">
+                        <span class="tech-hover">HTML</span>
+                        <span class="tech-hover">CSS</span>
+                        <span class="tech-hover">JavaScript</span>
+                        <span class="tech-hover">Dart</span>
+                        <span class="tech-hover">Flutter</span>
+                    </div>
+                </div>
+
+                <div class="skill-group" data-skill="tech">
+                    <h3><span class="dot tech-dot"></span> Backend & Datos</h3>
+                    <div class="skill-tags">
+                        <span class="tech-hover">Python</span>
+                        <span class="tech-hover">Flask</span>
+                        <span class="tech-hover">Django</span>
+                        <span class="tech-hover">SQL</span>
+                        <span class="tech-hover">APIs REST</span>
+                        <span class="tech-hover">Git</span>
+                        <span class="tech-hover">Bases de datos relacionales</span>
+                    </div>
+                </div>
+
+                <!-- Shared skills -->
+                <div class="skill-group" data-skill="shared">
+                    <h3>Ofimática</h3>
+                    <div class="skill-tags">
+                        <span>Excel Avanzado</span>
+                        <span>Google Sheets</span>
+                        <span>Microsoft Office</span>
+                        <span>Outlook</span>
+                    </div>
+                </div>
+
+                <div class="skill-group" data-skill="shared">
+                    <h3>Competencias & Idiomas</h3>
+                    <div class="skill-tags">
+                        <span>Liderazgo de equipos</span>
+                        <span>Analítico</span>
+                        <span>Autodidacta</span>
+                        <span>Responsable</span>
+                        <span>Español (Nativo)</span>
+                        <span>Inglés (Conversacional y Escrito)</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section class="contact-section" id="contacto">
+        <div class="container">
+            <h2 class="section-title">Contacto</h2>
+            <div class="section-line" style="margin-left:auto;margin-right:auto;"></div>
+            <p class="contact-text">
+                Estoy abierto a nuevas oportunidades en contabilidad, finanzas y tecnología.
+            </p>
+            <div class="contact-cards">
+                <div class="contact-card">
+                    <div class="contact-icon">&#9993;</div>
+                    <div class="contact-label">Email</div>
+                    <div class="contact-value">
+                        <a href="mailto:diegoalberto.caceresmoraga@gmail.com">diegoalberto.caceresmoraga<wbr>@gmail.com</a>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">&#9742;</div>
+                    <div class="contact-label">Teléfono</div>
+                    <div class="contact-value">
+                        <a href="tel:+56984279572">+569 8427 9572</a>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">&#9873;</div>
+                    <div class="contact-label">Ubicación</div>
+                    <div class="contact-value">Santiago Centro, Chile</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2025 Diego Cáceres. Todos los derechos reservados.
+    </footer>
+
+    <script>
+        let currentProfile = 'finance';
+
+        function switchProfile(profile) {
+            currentProfile = profile;
+            const tabFinance = document.getElementById('tabFinance');
+            const tabTech = document.getElementById('tabTech');
+
+            // Tabs
+            tabFinance.className = 'profile-tab' + (profile === 'finance' ? ' active-finance' : '');
+            tabTech.className = 'profile-tab' + (profile === 'tech' ? ' active-tech' : '');
+
+            // About
+            document.getElementById('aboutFinance').classList.toggle('hidden', profile !== 'finance');
+            document.getElementById('aboutTech').classList.toggle('hidden', profile !== 'tech');
+            document.getElementById('statsFinance').classList.toggle('hidden', profile !== 'finance');
+            document.getElementById('statsTech').classList.toggle('hidden', profile !== 'tech');
+
+            // Section lines
+            const lines = ['aboutLine', 'expLine', 'eduLine', 'skillsLine'];
+            lines.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.classList.toggle('tech-line', profile === 'tech');
+                }
+            });
+
+            // Experience - dim non-matching items
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                const itemProfile = item.getAttribute('data-profile');
+                if (profile === 'finance') {
+                    item.classList.toggle('dimmed', itemProfile === 'tech');
+                } else {
+                    item.classList.toggle('dimmed', itemProfile === 'finance');
+                }
+            });
+
+            // Skills - show/hide groups
+            document.querySelectorAll('.skill-group').forEach(group => {
+                const skillProfile = group.getAttribute('data-skill');
+                if (skillProfile === 'shared') {
+                    group.classList.remove('hidden');
+                } else if (profile === 'finance') {
+                    group.classList.toggle('hidden', skillProfile === 'tech');
+                } else {
+                    group.classList.toggle('hidden', skillProfile === 'finance');
+                }
+            });
+        }
+
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            nav.style.boxShadow = window.scrollY > 50
+                ? '0 2px 15px rgba(0,0,0,0.1)'
+                : '0 2px 10px rgba(0,0,0,0.06)';
+        });
+
+        // Initialize
+        switchProfile('finance');
+    </script>
+
+</body>
+</html>
