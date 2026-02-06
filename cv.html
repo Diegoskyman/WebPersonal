@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Diego Cáceres | Contador Auditor & Fullstack Developer</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 12mm 14mm;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #2c3e50;
+            background: #fff;
+            font-size: 9.5pt;
+            line-height: 1.45;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ===== HEADER ===== */
+        .cv-header {
+            display: flex;
+            gap: 1.2rem;
+            align-items: center;
+            padding-bottom: 0.8rem;
+            border-bottom: 2.5px solid #1a3a5c;
+            margin-bottom: 0.8rem;
+        }
+
+        .cv-photo {
+            width: 85px;
+            height: 85px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: top;
+            border: 2.5px solid #1a3a5c;
+            flex-shrink: 0;
+        }
+
+        .cv-header-info {
+            flex: 1;
+        }
+
+        .cv-name {
+            font-size: 20pt;
+            font-weight: 700;
+            color: #1a3a5c;
+            letter-spacing: -0.5px;
+            line-height: 1.1;
+        }
+
+        .cv-roles {
+            display: flex;
+            gap: 0.6rem;
+            margin-top: 0.3rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .cv-role {
+            font-size: 8.5pt;
+            font-weight: 600;
+            padding: 0.15rem 0.6rem;
+            border-radius: 12px;
+        }
+
+        .cv-role.finance {
+            background: rgba(52, 152, 219, 0.12);
+            color: #3498db;
+            border: 1px solid rgba(52, 152, 219, 0.4);
+        }
+
+        .cv-role.tech {
+            background: rgba(16, 185, 129, 0.12);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.4);
+        }
+
+        .cv-contact {
+            display: flex;
+            gap: 1.2rem;
+            font-size: 8.5pt;
+            color: #5a6a7a;
+            flex-wrap: wrap;
+        }
+
+        .cv-contact span {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .cv-contact a {
+            color: #5a6a7a;
+            text-decoration: none;
+        }
+
+        /* ===== LAYOUT ===== */
+        .cv-body {
+            display: grid;
+            grid-template-columns: 1fr 260px;
+            gap: 1.2rem;
+        }
+
+        .cv-main {
+            min-width: 0;
+        }
+
+        .cv-sidebar {
+            min-width: 0;
+        }
+
+        /* ===== SECTION TITLES ===== */
+        .cv-section-title {
+            font-size: 10.5pt;
+            font-weight: 700;
+            color: #1a3a5c;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding-bottom: 0.25rem;
+            border-bottom: 2px solid #3498db;
+            margin-bottom: 0.6rem;
+            margin-top: 0.7rem;
+        }
+
+        .cv-section-title:first-child {
+            margin-top: 0;
+        }
+
+        .cv-section-title.tech-title {
+            border-bottom-color: #10b981;
+        }
+
+        /* ===== ABOUT ===== */
+        .cv-about {
+            font-size: 9pt;
+            color: #5a6a7a;
+            line-height: 1.5;
+            margin-bottom: 0.2rem;
+        }
+
+        .cv-about-label {
+            font-weight: 600;
+            color: #1a3a5c;
+            font-size: 8.5pt;
+            margin-bottom: 0.1rem;
+        }
+
+        .cv-about-block {
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== EXPERIENCE ===== */
+        .cv-job {
+            margin-bottom: 0.65rem;
+            padding-left: 0.6rem;
+            border-left: 2.5px solid #e0e6ed;
+            page-break-inside: avoid;
+        }
+
+        .cv-job.tech-border {
+            border-left-color: #10b981;
+        }
+
+        .cv-job.finance-border {
+            border-left-color: #3498db;
+        }
+
+        .cv-job-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .cv-job-title {
+            font-size: 9.5pt;
+            font-weight: 600;
+            color: #1a3a5c;
+        }
+
+        .cv-job-date {
+            font-size: 8pt;
+            color: #5a6a7a;
+            white-space: nowrap;
+        }
+
+        .cv-job-company {
+            font-size: 8.5pt;
+            font-weight: 500;
+            color: #3498db;
+        }
+
+        .cv-job-company.tech {
+            color: #10b981;
+        }
+
+        .cv-job-desc {
+            font-size: 8.5pt;
+            color: #5a6a7a;
+            line-height: 1.45;
+            margin-top: 0.15rem;
+        }
+
+        .cv-job-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+            margin-top: 0.2rem;
+        }
+
+        .cv-job-tags span {
+            font-size: 7.5pt;
+            background: #f0f4f8;
+            color: #5a6a7a;
+            padding: 0.1rem 0.45rem;
+            border-radius: 8px;
+        }
+
+        /* ===== EDUCATION ===== */
+        .cv-edu {
+            margin-bottom: 0.5rem;
+            padding-left: 0.6rem;
+            border-left: 2.5px solid #3498db;
+        }
+
+        .cv-edu.tech-border {
+            border-left-color: #10b981;
+        }
+
+        .cv-edu-title {
+            font-size: 9.5pt;
+            font-weight: 600;
+            color: #1a3a5c;
+        }
+
+        .cv-edu-school {
+            font-size: 8.5pt;
+            color: #5a6a7a;
+        }
+
+        .cv-edu-year {
+            font-size: 8pt;
+            color: #3498db;
+            font-weight: 600;
+        }
+
+        .cv-edu-year.tech {
+            color: #10b981;
+        }
+
+        /* ===== SIDEBAR: SKILLS ===== */
+        .cv-skill-group {
+            margin-bottom: 0.6rem;
+        }
+
+        .cv-skill-group-title {
+            font-size: 8.5pt;
+            font-weight: 700;
+            color: #1a3a5c;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .cv-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .cv-dot.finance { background: #3498db; }
+        .cv-dot.tech { background: #10b981; }
+
+        .cv-skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+        }
+
+        .cv-skill-tags span {
+            font-size: 8pt;
+            background: #f0f4f8;
+            color: #5a6a7a;
+            padding: 0.12rem 0.5rem;
+            border-radius: 10px;
+        }
+
+        /* ===== NORMAS ===== */
+        .cv-normas {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 0.2rem;
+        }
+
+        .cv-norma {
+            text-align: center;
+            flex: 1;
+            padding: 0.35rem;
+            background: #f0f4f8;
+            border-radius: 6px;
+        }
+
+        .cv-norma-name {
+            font-size: 10pt;
+            font-weight: 700;
+            color: #1a3a5c;
+        }
+
+        .cv-norma-desc {
+            font-size: 6.5pt;
+            color: #5a6a7a;
+        }
+
+        /* ===== PRINT BUTTON ===== */
+        .print-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #1a3a5c;
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .print-bar a, .print-bar button {
+            color: #fff;
+            text-decoration: none;
+            background: rgba(255,255,255,0.15);
+            border: 1.5px solid rgba(255,255,255,0.3);
+            padding: 0.4rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-family: inherit;
+            transition: background 0.3s;
+        }
+
+        .print-bar a:hover, .print-bar button:hover {
+            background: rgba(255,255,255,0.25);
+        }
+
+        @media print {
+            .print-bar {
+                display: none;
+            }
+            body {
+                padding-top: 0;
+            }
+        }
+
+        @media screen {
+            body {
+                padding: 3.5rem 0 2rem;
+                background: #e8ecf0;
+            }
+            .cv-page {
+                max-width: 210mm;
+                margin: 0 auto;
+                background: #fff;
+                padding: 12mm 14mm;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+                min-height: 297mm;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Print controls (hidden when printing) -->
+    <div class="print-bar">
+        <button onclick="window.print()">&#128424; Imprimir / Guardar PDF</button>
+        <a href="index.html">&#8592; Volver al sitio</a>
+    </div>
+
+    <div class="cv-page">
+
+        <!-- HEADER -->
+        <div class="cv-header">
+            <img src="foto2.jpeg" alt="Diego Cáceres" class="cv-photo">
+            <div class="cv-header-info">
+                <div class="cv-name">Diego Cáceres</div>
+                <div class="cv-roles">
+                    <span class="cv-role finance">Contador Auditor</span>
+                    <span class="cv-role tech">Fullstack Developer</span>
+                </div>
+                <div class="cv-contact">
+                    <span>&#9993; <a href="mailto:diegoalberto.caceresmoraga@gmail.com">diegoalberto.caceresmoraga@gmail.com</a></span>
+                    <span>&#9742; +56 9 3195 8695</span>
+                    <span>&#9873; Santiago Centro, Chile</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- BODY: 2-column layout -->
+        <div class="cv-body">
+
+            <!-- ===== MAIN COLUMN ===== -->
+            <div class="cv-main">
+
+                <!-- Perfil Profesional -->
+                <div class="cv-section-title">Perfil Profesional</div>
+                <div class="cv-about-block">
+                    <div class="cv-about-label">&#9879; Contador Auditor</div>
+                    <div class="cv-about">
+                        Contador Auditor con más de 7 años de experiencia en contabilidad, remuneraciones
+                        e impuestos para holdings inmobiliarios, fintech, agencias digitales y consultoras.
+                        Especializado en preparación y análisis de estados financieros bajo normas PCGA, IFRS
+                        y US GAAP, declaración de impuestos en Chile y Estados Unidos, liderazgo de equipos contables,
+                        mejora de procesos y automatización, y reportería con análisis de datos en SQL.
+                    </div>
+                </div>
+                <div class="cv-about-block">
+                    <div class="cv-about-label">&lt;/&gt; Fullstack Developer</div>
+                    <div class="cv-about">
+                        Profesional híbrido que combina una sólida base en contabilidad y finanzas con
+                        habilidades en desarrollo de software. Experto en desarrollo de sistemas ERP/CRM.
+                        Experiencia como CTO en una Fintech contable, liderando la estrategia tecnológica.
+                        Manejo de desarrollo web (HTML, CSS, JavaScript), aplicaciones con Python,
+                        desarrollo móvil con Dart/Flutter y diseño de bases de datos relacionales.
+                    </div>
+                </div>
+
+                <!-- Experiencia -->
+                <div class="cv-section-title">Experiencia Profesional</div>
+
+                <div class="cv-job tech-border">
+                    <div class="cv-job-top">
+                        <div class="cv-job-title">CTO</div>
+                        <div class="cv-job-date">2026 - Presente</div>
+                    </div>
+                    <div class="cv-job-company tech">Numera - Fintech Contable</div>
+                    <div class="cv-job-desc">
+                        Liderazgo tecnológico del ERP contable. Foco en el desarrollo y lanzamiento
+                        de la APP móvil de Numera (Android / iOS) desarrollada en Dart con Flutter.
+                        Gestión y desarrollo continuo del CRM integrado.
+                    </div>
+                    <div class="cv-job-tags">
+                        <span>Dart</span><span>Flutter</span><span>Android</span><span>iOS</span><span>CRM</span><span>Python</span>
+                    </div>
+                </div>
+
+                <div class="cv-job tech-border">
+                    <div class="cv-job-top">
+                        <div class="cv-job-title">CEO / CTO</div>
+                        <div class="cv-job-date">2025</div>
+                    </div>
+                    <div class="cv-job-company tech">Numera - Fintech Contable</div>
+                    <div class="cv-job-desc">
+                        Dirección general y tecnológica de la empresa. Consolidación de una
+                        cartera de 100+ suscriptores de pago (clientes recurrentes). Desarrollo
+                        de CRM integrado con Google Meet y Gmail, e implementación de pasarela
+                        de pago Payku/Reveniu.
+                    </div>
+                    <div class="cv-job-tags">
+                        <span>Estrategia de negocio</span><span>CRM</span><span>Google Meet / Gmail</span><span>Payku / Reveniu</span>
+                    </div>
+                </div>
+
+                <div class="cv-job tech-border">
+                    <div class="cv-job-top">
+                        <div class="cv-job-title">Fullstack Developer</div>
+                        <div class="cv-job-date">2023 - 2024</div>
+                    </div>
+                    <div class="cv-job-company tech">Numera - Fintech Contable</div>
+                    <div class="cv-job-desc">
+                        Desarrollo fullstack del ERP contable. Creación de un sistema con
+                        reportería completa bajo normas IFRS, integrado con el Servicio de
+                        Impuestos Internos (SII).
+                    </div>
+                    <div class="cv-job-tags">
+                        <span>Python</span><span>HTML / CSS / JS</span><span>Bases de datos</span><span>IFRS</span><span>Integración SII</span>
+                    </div>
+                </div>
+
+                <div class="cv-job finance-border">
+                    <div class="cv-job-top">
+                        <div class="cv-job-title">Jefe Contable</div>
+                        <div class="cv-job-date">2020 - 2022</div>
+                    </div>
+                    <div class="cv-job-company">CafCapital - Holding Inmobiliario</div>
+                    <div class="cv-job-desc">
+                        Coordinación del equipo contable (3 personas). Emisión de estados financieros
+                        por empresa y consolidados: Balance, Estado de flujo de efectivo, Estado de
+                        resultados y Estado de variación patrimonial. Gestión integral de impuestos:
+                        Renta, Impuestos mensuales, Sobretasa de bienes raíces y Contribuciones.
+                    </div>
+                    <div class="cv-job-tags">
+                        <span>ERP Drysoft</span><span>Google Sheets</span><span>Microsoft Excel</span>
+                    </div>
+                </div>
+
+                <div class="cv-job finance-border">
+                    <div class="cv-job-top">
+                        <div class="cv-job-title">Contador</div>
+                        <div class="cv-job-date">2019</div>
+                    </div>
+                    <div class="cv-job-company">Collection Services - Empresa de cobranzas</div>
+                    <div class="cv-job-desc">
+                        Encargado de contabilidad, remuneraciones e impuestos. Reportes mensuales de
+                        estados financieros, Balance clasificado y 8 columnas, análisis de cuentas,
+                        Estado de resultados corporativo y por centros de costos.
+                    </div>
+                    <div class="cv-job-tags">
+                        <span>ERP Softland</span><span>Microsoft Excel</span>
+                    </div>
+                </div>
+
+                <div class="cv-job finance-border">
+                    <div class="cv-job-top">
+                        <div class="cv-job-title">Administrativo</div>
+                        <div class="cv-job-date">2018</div>
+                    </div>
+                    <div class="cv-job-company">Big Band Digital - Agencia de publicidad digital</div>
+                    <div class="cv-job-desc">
+                        Coordinación del flujo de información entre directorio y oficina contable externa.
+                        Flujos de caja, operaciones de factoring, nóminas bancarias, compra de divisas,
+                        remesas internacionales, control de facturación y cobranza.
+                    </div>
+                </div>
+
+                <div class="cv-job finance-border">
+                    <div class="cv-job-top">
+                        <div class="cv-job-title">Asistente Contable</div>
+                        <div class="cv-job-date">2017</div>
+                    </div>
+                    <div class="cv-job-company">ASB Gestión Contable</div>
+                    <div class="cv-job-desc">
+                        Cartera de clientes asignada: registros contables, estados financieros
+                        (balance 8 columnas, estado de resultados), declaraciones de impuestos (F29),
+                        atención de clientes y gestión documental.
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ===== SIDEBAR ===== -->
+            <div class="cv-sidebar">
+
+                <!-- Educación -->
+                <div class="cv-section-title">Educación</div>
+
+                <div class="cv-edu">
+                    <div class="cv-edu-year">2017 - 2023</div>
+                    <div class="cv-edu-title">Contador Auditor</div>
+                    <div class="cv-edu-school">Escuela de Contadores Auditores de Santiago</div>
+                </div>
+
+                <div class="cv-edu tech-border">
+                    <div class="cv-edu-year tech">2024</div>
+                    <div class="cv-edu-title">Bookkeeper & Tax Preparer</div>
+                    <div class="cv-edu-school">Latin American Business Institute</div>
+                </div>
+
+                <div class="cv-edu tech-border">
+                    <div class="cv-edu-year tech">2023 - Presente</div>
+                    <div class="cv-edu-title">Programación Fullstack</div>
+                    <div class="cv-edu-school">Autodidacta</div>
+                </div>
+
+                <!-- Normas Contables -->
+                <div class="cv-section-title">Normas Contables</div>
+                <div class="cv-normas">
+                    <div class="cv-norma">
+                        <div class="cv-norma-name">PCGA</div>
+                        <div class="cv-norma-desc">Principios Generalmente Aceptados</div>
+                    </div>
+                    <div class="cv-norma">
+                        <div class="cv-norma-name">IFRS</div>
+                        <div class="cv-norma-desc">International Financial Reporting</div>
+                    </div>
+                    <div class="cv-norma">
+                        <div class="cv-norma-name">US GAAP</div>
+                        <div class="cv-norma-desc">US Accounting Principles</div>
+                    </div>
+                </div>
+
+                <!-- Habilidades -->
+                <div class="cv-section-title">Sistemas ERP</div>
+                <div class="cv-skill-group">
+                    <div class="cv-skill-tags">
+                        <span>Softland</span><span>Defontana</span><span>Manager</span><span>Nubox</span><span>Drysoft</span><span>Kame</span>
+                    </div>
+                </div>
+
+                <div class="cv-section-title">Contabilidad & Tributación</div>
+                <div class="cv-skill-group">
+                    <div class="cv-skill-tags">
+                        <span>Estados Financieros</span><span>Impuestos Chile</span><span>Impuestos USA</span><span>Remuneraciones</span><span>Consolidación</span>
+                    </div>
+                </div>
+
+                <div class="cv-section-title tech-title">Frontend & Mobile</div>
+                <div class="cv-skill-group">
+                    <div class="cv-skill-tags">
+                        <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Dart</span><span>Flutter</span>
+                    </div>
+                </div>
+
+                <div class="cv-section-title tech-title">Backend & Datos</div>
+                <div class="cv-skill-group">
+                    <div class="cv-skill-tags">
+                        <span>Python</span><span>Flask</span><span>Django</span><span>SQL</span><span>APIs REST</span><span>Git</span><span>BD Relacionales</span>
+                    </div>
+                </div>
+
+                <div class="cv-section-title">Ofimática</div>
+                <div class="cv-skill-group">
+                    <div class="cv-skill-tags">
+                        <span>Excel Avanzado</span><span>Google Sheets</span><span>Microsoft Office</span><span>Outlook</span>
+                    </div>
+                </div>
+
+                <div class="cv-section-title">Competencias & Idiomas</div>
+                <div class="cv-skill-group">
+                    <div class="cv-skill-tags">
+                        <span>Liderazgo de equipos</span><span>Analítico</span><span>Autodidacta</span><span>Responsable</span>
+                    </div>
+                    <div class="cv-skill-tags" style="margin-top: 0.25rem;">
+                        <span>Español (Nativo)</span><span>Inglés (Conversacional y Escrito)</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
